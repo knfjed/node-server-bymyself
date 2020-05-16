@@ -12,7 +12,12 @@
     </head>
     <div role="main">
       <p><%= content %></p>
-      <p><a href="/other">other pageに移動 &gt;&gt;</a></p>
+      <form method="post" action="/other">
+        <p>
+          <input type="text" value="msg" />
+          <input type="submit" value="Click" />
+        </p>
+      </form>
     </div>
   </body>
 </html>

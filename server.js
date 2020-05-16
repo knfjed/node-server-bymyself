@@ -1,17 +1,20 @@
 const http = require("http");
 const fs = require("fs");
+const ejs = require("ejs");
 
-var myServer = http.createServer((request, response) => {
-  fs.readFile("./index.html", "UTF-8", (error, data) => {
-    var content = data
-      .replace(/dummy-title/g, "タイトルです")
-      .replace(/dummy-contents/, "コンテンツです");
+const index_page = fs.readFileSync("./index.ejs", "utf-8");
 
-    response.writeHead(200, { "Content-Type": "text/html" });
-    response.write(content);
-    response.end();
+const server = http.createServer(getFromClient);
+
+function getFromClient(request, response) {
+  const text = ejs.render(index_page, {
+    title: "Index",
+    content: "これはテンプレートを使ったサンプルです",
   });
-});
+  response.writeHead(200, { "Content-Type": "text/html" });
+  response.write(text);
+  response.end();
+}
 
-myServer.listen(3050);
+server.listen(3050);
 console.log("server listening.....");

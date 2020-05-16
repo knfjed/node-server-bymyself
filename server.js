@@ -39,12 +39,21 @@ function getFromClient(request, response) {
   }
 }
 
+// 追加するデータ用変数
+var data = {
+  Taro: "09-2345-4226",
+  Hanako: "080-2264-7894",
+  Sachiko: "090-4575-1245",
+  Ichiro: "070-4579-8694",
+};
+
 // indexのアクセス処理
 function response_index(request, response) {
   var msg = "これはインデックス ページです";
   var text = ejs.render(index_page, {
     title: "index",
     content: msg,
+    data: data,
   });
   response.writeHead(200, { "Contents-Type": "text/html" });
   response.write(text);

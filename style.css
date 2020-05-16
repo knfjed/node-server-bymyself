@@ -4,6 +4,10 @@ h1 {
   font-weight: 300;
 }
 
+head {
+  text-align: center;
+}
+
 P {
   text-align: center;
   color: pink;

@@ -1,0 +1,12 @@
+h1 {
+  font-size: medium;
+  font-weight: 300;
+}
+
+P {
+  color: red;
+}
+img {
+  width: 300px;
+  height: auto;
+}

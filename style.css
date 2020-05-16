@@ -1,12 +1,10 @@
 h1 {
+  text-align: center;
   font-size: medium;
   font-weight: 300;
 }
 
 P {
-  color: red;
-}
-img {
-  width: 300px;
-  height: auto;
+  text-align: center;
+  color: pink;
 }

@@ -17,14 +17,18 @@
           <tr><th>伝言です</th></tr>
           <tr><td><%= data.msg %></td></tr>          
         </table>
+        <p>your last message: <%= cookie_data %></p>
+        <form method="POST" action="/" ></form>
+        <p>MESSAGE<input type="text" name="msg">
+        <input type="submit" value="送信" ></p>
       </p>
 
-      <p>
+      <!-- <p>
         <form method="POST" action="/">
           MESSAGE <input type="text" name="msg">
           <input type="submit" value="送信">
         </form>
-      </p>
+      </p> -->
     </div>
   </body>
 </html>

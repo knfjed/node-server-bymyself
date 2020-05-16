@@ -47,6 +47,13 @@ var data = {
   Ichiro: "070-4579-8694",
 };
 
+var data2 = {
+  Taro: ["taro@yamada.com", "090-2456-2463", "tokyo"],
+  Hanako: ["hanako@satou.com", "012-2465-7594", "sendai"],
+  Sachiko: ["sachiko@suzuki.com", "080-4562-4587", "osaka"],
+  Ichiro: ["ichiro@abe.com", "070-4579-3564", "okinawa"],
+};
+
 // indexのアクセス処理
 function response_index(request, response) {
   var msg = "これはインデックス ページです";
@@ -64,42 +71,13 @@ function response_index(request, response) {
 // otherのアクセス処理
 function response_other(request, response) {
   var msg = "これはotherのページです";
-
-  // POSTアクセス時の処理
-  if (request.method == "POST") {
-    var body = "";
-
-    // データ受信時のイベント処理
-    // データを受け取ったら、都度追加し、変数bodyで保管
-    request.on("data", (data) => {
-      body += data;
-    });
-
-    // データ受信終了時のイベント処理
-    // データを全て受け取ったら、最後にパースして値として取り出す
-    // endイベントは全てのデータを受け取った後に発火するので、引数（渡されるデータ）はない
-    request.on("end", () => {
-      var post_data = qs.parse(body);
-      msg += "あなたは" + post_data.msg + "と入力しました";
-      var text = ejs.render(other_page, {
-        title: "Other",
-        content: msg,
-      });
-
-      response.writeHead(200, { "Content-Type": "text/html" });
-      response.write(text);
-      response.end();
-    });
-
-    // GETアクセス時の処理
-  } else {
-    var msg = "ページがありません";
-    var text = ejs.render(other_page, {
-      title: "Other",
-      content: msg,
-    });
-    response.writeHead(200, { "Content-Type": "text/html" });
-    response.write(text);
-    response.end();
-  }
+  var text = ejs.render(other_page, {
+    title: "Other",
+    content: msg,
+    data: data2,
+    filename: "data_item",
+  });
+  response.writeHead(200, { "Content-Type": "text/html" });
+  response.write(text);
+  response.end();
 }
